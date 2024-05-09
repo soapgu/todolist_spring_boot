@@ -1,40 +1,38 @@
 package com.example.todolist.controller;
 
 import com.example.todolist.dto.Task;
-import com.example.todolist.repository.TaskRepository;
+import com.example.todolist.service.UserTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserTaskController {
     @Autowired
-    TaskRepository taskRepository;
+    UserTaskService userTaskService;
 
 
     @GetMapping("user/{userId}/tasks")
     public Iterable<Task> getUserTasks(@PathVariable("userId") String userId){
-        /*
-        List<Task> list = new ArrayList<>();
-        Task task = new Task();
-        task.setUserId( userId );
-        task.setCreateTime(new Date());
-        task.setUpdateTime(new Date());
-        task.setDeadline( Date.from(Instant.now().plus(1, ChronoUnit.DAYS)));
-        task.setContent("do some job...");
-        list.add(task);
-         */
-        return taskRepository.findAll();
+
+        return userTaskService.getUserTasks(userId);
     }
 
     @PostMapping("user/{userId}/tasks")
     public Task createUserTasks( @PathVariable("userId") String userId,@RequestBody Task task){
-        return taskRepository.save( task );
+        return userTaskService.createUserTasks(task);
+    }
+
+    @PutMapping("user/{userId}/tasks")
+    public Task updateUserTask( @PathVariable("userId") String userId,@RequestBody Task task ){
+        return userTaskService.updateUserTasks( task );
+    }
+
+    @GetMapping("user/{userId}/tasks/{taskId}")
+    public ResponseEntity<Task> getUserTask(@PathVariable("userId") String userId, @PathVariable("taskId") Long taskId){
+        Optional<Task> result = userTaskService.getUserTask(taskId);
+        return ResponseEntity.of(result);
     }
 }
