@@ -13,5 +13,5 @@ public interface UserTaskService {
 
     Optional<Task> getUserTask(Long taskId);
 
-    void deleteUserTask(Long taskId);
+    boolean deleteUserTask(Long taskId);
 }

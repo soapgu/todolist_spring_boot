@@ -35,4 +35,10 @@ public class UserTaskController {
         Optional<Task> result = userTaskService.getUserTask(taskId);
         return ResponseEntity.of(result);
     }
+
+    @DeleteMapping("user/{userId}/tasks/{taskId}")
+    public ResponseEntity<String> deleteUserTask(@PathVariable("userId") String userId, @PathVariable("taskId") Long taskId){
+        boolean success = userTaskService.deleteUserTask(taskId);
+        return success ? ResponseEntity.ok("success") : ResponseEntity.notFound().build();
+    }
 }
