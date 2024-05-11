@@ -1,6 +1,6 @@
 package com.example.todolist.service;
 
-import com.example.todolist.dto.Task;
+import com.example.todolist.entity.Task;
 
 import java.util.List;
 import java.util.Optional;

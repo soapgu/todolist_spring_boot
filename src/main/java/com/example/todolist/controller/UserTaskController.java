@@ -1,6 +1,6 @@
 package com.example.todolist.controller;
 
-import com.example.todolist.dto.Task;
+import com.example.todolist.entity.Task;
 import com.example.todolist.service.UserTaskService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

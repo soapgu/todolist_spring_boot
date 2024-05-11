@@ -1,4 +1,4 @@
-package com.example.todolist.dto;
+package com.example.todolist.entity;
 
 import org.springframework.format.annotation.DateTimeFormat;
 

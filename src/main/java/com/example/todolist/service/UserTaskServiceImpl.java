@@ -1,6 +1,6 @@
 package com.example.todolist.service;
 
-import com.example.todolist.dto.Task;
+import com.example.todolist.entity.Task;
 import com.example.todolist.repository.TaskRepository;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
